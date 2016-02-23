@@ -4,6 +4,9 @@ require('dotenv').config();
 module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-screeps');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-eslint');
+	grunt.registerTask('default', ['watch']);
 
 	grunt.initConfig({
 		screeps: {
@@ -16,6 +19,17 @@ module.exports = function(grunt) {
 			dist: {
 				src: ['src/*.js']
 			}
+		},
+
+		watch: {
+			scripts: {
+				files: ['src/*.js'],
+				tasks: ['eslint', 'screeps']
+			}
+		},
+
+		eslint: {
+			target: ['src/*.js']
 		}
 	});
 }
